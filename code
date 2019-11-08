@@ -14,6 +14,8 @@ train_in,test_in,train_out,test_out=train_test_split(input,output,test_size=0.3,
 tfvid=TfidfVectorizer(stop_words='english',max_df=.70)
 tfvidf_in=tfvid.fit_transform(train_in)
 tfvidf_out=tfvid.transform(train_out)
-y_pred=passiv.predict(vact_test)
+pc=PassiveAggressiveClassifier(max_iter=55)
+pc.fit(tfidf_in,train_out)
+y_pred=pc.predict(vact_test)
 score=accuracy_score(y_pred,test_out)
 score
